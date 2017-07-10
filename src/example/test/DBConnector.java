@@ -3,8 +3,7 @@ package example.test;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 
 /**
  * Created by jaliya on 7/10/17.
