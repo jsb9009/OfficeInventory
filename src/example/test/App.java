@@ -9,12 +9,26 @@ import java.util.Scanner;
 /**
  * Created by jaliya on 7/10/17.
  */
+
+//TODO comment after each line what OOP concept is most related Polymorphism/Abstraction/Inheritance/Encapsulation
+
+//TODO javadoc comment ?
 public class App {
 
+    //TODO javadoc comments ?
+    //FIXME internally used methods should be private always if possible
     public void registerItems() {
 
         DBConnector db = new DBConnector();
         Connection con = db.getConnection();
+
+
+        //TODO Collect all the item related properties to a DTO called Item
+        /**
+         * Refer : https://stackoverflow.com/questions/6463634/how-to-create-dto-class
+         * https://www.tutorialspoint.com/design_pattern/transfer_object_pattern.htm
+         * Find more why we use DTO
+         */
 
         Scanner s = new Scanner(System.in);
         System.out.println("Enter the item number : ");
@@ -39,6 +53,7 @@ public class App {
         DBConnector db = new DBConnector();
         Connection con = db.getConnection();
 
+        //TODO collect all employee related properties to DTO called Employee
         Scanner s = new Scanner(System.in);
         System.out.println("Enter the employee number : ");
         String employeeNumber = s.nextLine();
