@@ -1,5 +1,13 @@
 package example.test;
 
+import example.test.dao.EmployeeDao;
+import example.test.dao.ItemDao;
+import example.test.dao.daoImpl.EmployeeDaoImpl;
+import example.test.dao.daoImpl.ItemDaoImpl;
+import example.test.dto.EmployeeDto;
+import example.test.dto.ItemDto;
+import example.test.util.DBConnector;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,15 +16,6 @@ import java.util.Scanner;
 
 /**
  * Created by jaliya on 7/10/17.
- */
-
-/**
- * mv DTO classes to a new package called dto
- * mv DAO classes to a new package called dao. DAO impl to a dao.impl
- * mv DBConnector to a new package called util.
- *
- *
- *
  */
 
 
@@ -30,7 +29,7 @@ public class App {
      */
     private void registerItems() {     //Encapsulation
 
-        ItemDto item1 = new ItemDto();
+        ItemDto item1 = new ItemDto();  //inheritance
 
         Scanner s = new Scanner(System.in);                //inheritance  //polymorphism
         System.out.println("Enter the item number : ");    //polymorphism
@@ -45,9 +44,9 @@ public class App {
         String itemType = s.nextLine();
         item1.setItemType(itemType);                       //encapsulation
 
+        ItemDao itemDao = new ItemDaoImpl();       //inheritance
 
-        ItemDao itemDao = new ItemDaoImpl();
-        itemDao.getItem(item1);
+        itemDao.getItem(item1);                    //polymorphism    //encapsulation
 
     }
 
@@ -73,8 +72,8 @@ public class App {
         String employeePosition = s.nextLine();
         emp.setEmployeePosition(employeePosition);             //encapsulation
 
-        EmployeeDao employeeDao = new EmployeeDaoImpl();
-        employeeDao.getEmployee(emp);
+        EmployeeDao employeeDao = new EmployeeDaoImpl();      //inheritance
+        employeeDao.getEmployee(emp);                         //polymorphism    //encapsulation
 
     }
 
@@ -104,55 +103,45 @@ public class App {
             JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
-
     }
+
 
     /**
      * show the current assigned items as well as the free items
      */
     private void showAssignation() {      //Encapsulation
 
-        DBConnector db = new DBConnector();      //inheritance
-        Connection con = db.getConnection();     //inheritance
+
+        ItemDaoImpl itemDao = new ItemDaoImpl();
 
         try {
-
-            //TODO Move following DB operations also to a proper Dao (ItemDao)
-
-            Statement stmt = con.createStatement();    //inheritance
-            ResultSet rs = stmt.executeQuery("select ItemNo,ItemType,EmployeeNo from item,employee where item.Assignation=employee.IndexNo");   //polymorphism
-            while (rs.next())
-                System.out.println(rs.getString(1) + "    " + rs.getString(2) + "    " + rs.getString(3));   //polymorphism
-
+            ResultSet resultSet = itemDao.showItem();
+            while (resultSet.next())
+                System.out.println(resultSet.getString(1) + "    " + resultSet.getString(2) + "    " + resultSet.getString(3));   //polymorphism
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+
         }
 
         System.out.println("");              //polymorphism
         System.out.println("Free items");    //polymorphism
 
-
         try {
-            Statement stmt = con.createStatement();    //inheritance
-            ResultSet rs = stmt.executeQuery("select ItemNo,ItemType from item where Assignation IS NULL");    //polymorphism
-            while (rs.next())
-                System.out.println(rs.getString(1) + "    " + rs.getString(2));     //polymorphism
 
-            con.close();
+            ResultSet resultSet2 = itemDao.showFreeItem();
+
+            while (resultSet2.next())
+                System.out.println(resultSet2.getString(1) + "    " + resultSet2.getString(2));     //polymorphism
+
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
 
     public static void main(String[] args) {
-
-
-       /* DBConnector db = new DBConnector();   //inheritance
-        Connection con = db.getConnection();  //inheritance     */
 
         Scanner s = new Scanner(System.in); //inheritance    //polymorphism
         App ts = new App();                 //inheritance

@@ -1,4 +1,4 @@
-package example.test;
+package example.test.util;
 
 import javax.swing.*;
 import java.sql.Connection;

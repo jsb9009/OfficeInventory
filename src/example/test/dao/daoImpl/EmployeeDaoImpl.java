@@ -1,4 +1,9 @@
-package example.test;
+package example.test.dao.daoImpl;
+
+import example.test.util.DBConnector;
+import example.test.dao.EmployeeDao;
+import example.test.dto.EmployeeDto;
+import example.test.dto.ItemDto;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -12,11 +17,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
     DBConnector db = new DBConnector();
     Connection con = db.getConnection();
 
-    //TODO inherit javadocs
-
+    /**
+     * user's item inputs are gathered and they are persisted to the database
+     * @param employeeDto
+     * @return null
+     */
     @Override
     public ItemDto getEmployee(EmployeeDto employeeDto) {
-
 
         try {
             Statement stmt = con.createStatement();           //inheritance
