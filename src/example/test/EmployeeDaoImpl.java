@@ -12,6 +12,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     DBConnector db = new DBConnector();
     Connection con = db.getConnection();
 
+    //TODO inherit javadocs
 
     @Override
     public ItemDto getEmployee(EmployeeDto employeeDto) {

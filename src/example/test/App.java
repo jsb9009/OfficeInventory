@@ -11,6 +11,16 @@ import java.util.Scanner;
  */
 
 /**
+ * mv DTO classes to a new package called dto
+ * mv DAO classes to a new package called dao. DAO impl to a dao.impl
+ * mv DBConnector to a new package called util.
+ *
+ *
+ *
+ */
+
+
+/**
  * A class that contains the functionality to register items,employees,assign items to employees and view the current assignation
  */
 public class App {
@@ -106,6 +116,9 @@ public class App {
         Connection con = db.getConnection();     //inheritance
 
         try {
+
+            //TODO Move following DB operations also to a proper Dao (ItemDao)
+
             Statement stmt = con.createStatement();    //inheritance
             ResultSet rs = stmt.executeQuery("select ItemNo,ItemType,EmployeeNo from item,employee where item.Assignation=employee.IndexNo");   //polymorphism
             while (rs.next())
