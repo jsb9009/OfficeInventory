@@ -126,19 +126,20 @@ public class App {
         }
     }
 
-
-    public static void main(String[] args) {
+    /**
+     * display the main menu and get the user's choice and then navigate according to user's choice
+     */
+    private void showChoices(){
 
         Scanner s = new Scanner(System.in); //inheritance    //polymorphism
-        App ts = new App();                 //inheritance
-
+        App ts1 = new App();
 
         String mainMenu = ("Select a choice: \n"
                 + "1. Enter 1 to register items :\n"
                 + "2. Enter 2 to register employees : \n"
                 + "3. Enter 3 to assign items : \n"
                 + "4. Enter 4 to view assignation : \n"
-                + "5. Exit\n");     //polymorphism
+                + "5. Exit\n");
 
         int choice;
 
@@ -148,19 +149,18 @@ public class App {
             System.out.println(mainMenu);  //polymorphism
 
             choice = s.nextInt();
-
             switch (choice) {
                 case 1:
-                    ts.registerItems();    //polymorphism
+                    ts1.registerItems();
                     break;
                 case 2:
-                    ts.registerEmployees();
+                    ts1.registerEmployees();
                     break;
                 case 3:
-                    ts.assignItems();
+                    ts1.assignItems();
                     break;
                 case 4:
-                    ts.showAssignation();
+                    ts1.showAssignation();
                     break;
                 case 5:
                     System.exit(0);
@@ -172,6 +172,14 @@ public class App {
             }
 
         } while (choice != 0);
+
+        }
+
+    public static void main(String[] args) {
+
+        App ts = new App();                 //inheritance
+        ts.showChoices();
+
     }
 
 }
