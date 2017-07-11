@@ -3,12 +3,11 @@ package example.test;
 /**
  * Created by jaliya on 7/10/17.
  */
-public class Item {
+public class ItemDto {
 
     private String itemNumber;
     private String itemName;
     private String itemType;
-
 
     public void setItemNumber(String itemNo){
 

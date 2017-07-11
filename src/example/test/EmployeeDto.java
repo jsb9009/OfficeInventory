@@ -3,7 +3,7 @@ package example.test;
 /**
  * Created by jaliya on 7/10/17.
  */
-public class Employee {
+public class EmployeeDto {
 
     private String employeeNumber;
     private String employeeName;

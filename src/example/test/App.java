@@ -10,11 +10,8 @@ import java.util.Scanner;
  * Created by jaliya on 7/10/17.
  */
 
-//TODO Rename Employee and Item classes as EmployeeDto and ItemDto
-
 /**
- * A class that contains the functionality to register items,employees,assign items to employees and view the current
- * assignation
+ * A class that contains the functionality to register items,employees,assign items to employees and view the current assignation
  */
 public class App {
 
@@ -23,10 +20,7 @@ public class App {
      */
     private void registerItems() {     //Encapsulation
 
-        DBConnector db = new DBConnector();  //inheritance
-        Connection con = db.getConnection();  //inheritance
-
-        Item item1 = new Item();
+        ItemDto item1 = new ItemDto();
 
         Scanner s = new Scanner(System.in);                //inheritance  //polymorphism
         System.out.println("Enter the item number : ");    //polymorphism
@@ -41,38 +35,26 @@ public class App {
         String itemType = s.nextLine();
         item1.setItemType(itemType);                       //encapsulation
 
-        try {
-            //TODO move item related DB operations to ItemDao
-            /**Refer https://stackoverflow.com/questions/19154202/data-access-object-dao-in-java
-             * https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm
-             * https://en.wikipedia.org/wiki/Data_access_object
-             * **/
-            Statement stmt = con.createStatement();    //inheritance
-            stmt.executeUpdate("INSERT INTO item (ItemNo,ItemName,ItemType) VALUES ('" + item1.getItemNumber() + "','" +
-                    item1.getItemName() + "','" + item1.getItemType() + "')");    //polymorphism   //encapsulation
-            JOptionPane.showMessageDialog(null, "Item successfully registered");    //polymorphism
-            con.close();
-        } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
+        ItemDao itemDao = new ItemDaoImpl();
+        itemDao.getItem(item1);
+
     }
+
 
     /**
      * used to register employees by getting employee inputs via console and save them an the database
      */
     private void registerEmployees() {     //Encapsulation
 
-        DBConnector db = new DBConnector();
-        Connection con = db.getConnection();
-
-        Employee emp = new Employee();
+        EmployeeDto emp = new EmployeeDto();
 
         Scanner s = new Scanner(System.in);                    //inheritance  //polymorphism
         System.out.println("Enter the employee number : ");    //polymorphism
-        String employeeNumber = s.nextLine();                  //inheritance
-        emp.setEmployeeNumber(employeeNumber);                 //encapsulation
 
+        String employeeNumber = s.nextLine();                  //inheritance
+
+        emp.setEmployeeNumber(employeeNumber);                 //encapsulation
         System.out.println("Enter the employee name : ");
         String employeeName = s.nextLine();
         emp.setEmployeeName(employeeName);                     //encapsulation
@@ -81,19 +63,9 @@ public class App {
         String employeePosition = s.nextLine();
         emp.setEmployeePosition(employeePosition);             //encapsulation
 
-        try {
-            //TODO move employee related DB operations to EmployeeDao
-            Statement stmt = con.createStatement();           //inheritance
-            stmt.executeUpdate(
-                    "INSERT INTO employee (EmployeeNo,EmployeeName,Position) VALUES ('" + emp.getEmployeeNumber() +
-                            "','" + emp.getEmployeeName() + "','" + emp.getEmployeePosition() +
-                            "')");  //polymorphism  //encapsulation
-            JOptionPane.showMessageDialog(null, "Employee successfully registered");
-            con.close();
-        } catch (Exception e) {
+        EmployeeDao employeeDao = new EmployeeDaoImpl();
+        employeeDao.getEmployee(emp);
 
-            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
     }
 
     /**
@@ -113,9 +85,7 @@ public class App {
         try {
             Statement stmt = con.createStatement();      //inheritance
 
-            stmt.executeUpdate(
-                    "update item set Assignation=(select IndexNo from employee where EmployeeNo='" + employeeNumber +
-                            "') where ItemNo='" + itemNumber + "'"); //polymorphism
+            stmt.executeUpdate("update item set Assignation=(select IndexNo from employee where EmployeeNo='" + employeeNumber + "') where ItemNo='" + itemNumber + "'"); //polymorphism
 
             JOptionPane.showMessageDialog(null, "Item was successfully assigned");
             con.close();
@@ -137,12 +107,9 @@ public class App {
 
         try {
             Statement stmt = con.createStatement();    //inheritance
-            ResultSet rs = stmt.executeQuery(
-                    "select ItemNo,ItemType,EmployeeNo from item,employee where item.Assignation=employee.IndexNo");
-                      //polymorphism
+            ResultSet rs = stmt.executeQuery("select ItemNo,ItemType,EmployeeNo from item,employee where item.Assignation=employee.IndexNo");   //polymorphism
             while (rs.next())
-                System.out.println(
-                        rs.getString(1) + "    " + rs.getString(2) + "    " + rs.getString(3));   //polymorphism
+                System.out.println(rs.getString(1) + "    " + rs.getString(2) + "    " + rs.getString(3));   //polymorphism
 
         } catch (Exception e) {
 
@@ -152,10 +119,10 @@ public class App {
         System.out.println("");              //polymorphism
         System.out.println("Free items");    //polymorphism
 
+
         try {
             Statement stmt = con.createStatement();    //inheritance
-            ResultSet rs =
-                    stmt.executeQuery("select ItemNo,ItemType from item where Assignation IS NULL");    //polymorphism
+            ResultSet rs = stmt.executeQuery("select ItemNo,ItemType from item where Assignation IS NULL");    //polymorphism
             while (rs.next())
                 System.out.println(rs.getString(1) + "    " + rs.getString(2));     //polymorphism
 
@@ -188,7 +155,8 @@ public class App {
         int choice;
 
         do {
-
+            System.out.println("");
+            System.out.println("");
             System.out.println(mainMenu);  //polymorphism
 
             choice = s.nextInt();
