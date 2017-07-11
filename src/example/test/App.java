@@ -6,12 +6,10 @@ import example.test.dao.daoImpl.EmployeeDaoImpl;
 import example.test.dao.daoImpl.ItemDaoImpl;
 import example.test.dto.EmployeeDto;
 import example.test.dto.ItemDto;
-import example.test.util.DBConnector;
+
 
 import javax.swing.*;
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.Scanner;
 
 /**
@@ -82,26 +80,14 @@ public class App {
      */
     private void assignItems() {     //Encapsulation
 
-        DBConnector db = new DBConnector();     //inheritance
-        Connection con = db.getConnection();    //inheritance
-
         Scanner s = new Scanner(System.in);                  //inheritance  //polymorphism
         System.out.println("Enter the employee number : ");  //polymorphism
         String employeeNumber = s.nextLine();                //inheritance
         System.out.println("Enter the item number : ");
         String itemNumber = s.nextLine();
 
-        try {
-            Statement stmt = con.createStatement();      //inheritance
-
-            stmt.executeUpdate("update item set Assignation=(select IndexNo from employee where EmployeeNo='" + employeeNumber + "') where ItemNo='" + itemNumber + "'"); //polymorphism
-
-            JOptionPane.showMessageDialog(null, "Item was successfully assigned");
-            con.close();
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
+        ItemDaoImpl itemDaoImpl = new ItemDaoImpl();
+        itemDaoImpl.assignItem(employeeNumber,itemNumber);
 
     }
 

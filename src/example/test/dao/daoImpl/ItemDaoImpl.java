@@ -39,7 +39,7 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     /**
-     *show the current assigned items with their corresponding employees
+     *show the current assigned items with their corresponding employees from the database
      * @return ResultSet class object
      */
     public ResultSet showItem() {
@@ -59,7 +59,7 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     /**
-     *show the current free items which can be assigned
+     *show the current free items which can be assigned from database
      * @return
      */
     public ResultSet showFreeItem() {
@@ -78,4 +78,26 @@ public class ItemDaoImpl implements ItemDao {
         return null;
     }
 
+    /**
+     * persist the assignation of an item number and the employee number
+     * @param employeeNumber
+     * @param itemNumber
+     */
+    public void assignItem(String employeeNumber,String itemNumber){
+
+        try {
+            Statement stmt = con.createStatement();      //inheritance
+
+            stmt.executeUpdate("update item set Assignation=(select IndexNo from employee where EmployeeNo='" + employeeNumber + "') where ItemNo='" + itemNumber + "'"); //polymorphism
+
+            JOptionPane.showMessageDialog(null, "Item was successfully assigned");
+            con.close();
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+
+    }
 }
