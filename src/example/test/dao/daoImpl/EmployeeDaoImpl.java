@@ -12,6 +12,10 @@ import java.sql.Statement;
 /**
  * Created by jaliya on 7/11/17.
  */
+
+/**
+ * Implementing the EmployeeDao interface
+ */
 public class EmployeeDaoImpl implements EmployeeDao {
 
     DBConnector db = new DBConnector();
@@ -19,6 +23,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     /**
      * user's item inputs are gathered and they are persisted to the database
+     *
      * @param employeeDto
      * @return null
      */

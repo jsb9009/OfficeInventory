@@ -13,6 +13,10 @@ import java.sql.Statement;
 /**
  * Created by jaliya on 7/11/17.
  */
+
+/**
+ * Implementing the ItemDao interface
+ */
 public class ItemDaoImpl implements ItemDao {
 
     DBConnector db = new DBConnector();
@@ -20,6 +24,7 @@ public class ItemDaoImpl implements ItemDao {
 
     /**
      * user's employee inputs are gathered and they are persisted to the database
+     *
      * @param itemDto
      * @return null
      */
@@ -39,7 +44,8 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     /**
-     *show the current assigned items with their corresponding employees from the database
+     * show the current assigned items with their corresponding employees from the database
+     *
      * @return ResultSet class object
      */
     public ResultSet showItem() {
@@ -59,7 +65,8 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     /**
-     *show the current free items which can be assigned from database
+     * show the current free items which can be assigned from database
+     *
      * @return
      */
     public ResultSet showFreeItem() {
@@ -79,11 +86,12 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     /**
-     * persist the assignation of an item number and the employee number
+     * persist the assignation of an item with the item number and the employee number
+     *
      * @param employeeNumber
      * @param itemNumber
      */
-    public void assignItem(String employeeNumber,String itemNumber){
+    public void assignItem(String employeeNumber, String itemNumber) {
 
         try {
             Statement stmt = con.createStatement();      //inheritance
@@ -96,7 +104,6 @@ public class ItemDaoImpl implements ItemDao {
 
             JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-
 
 
     }

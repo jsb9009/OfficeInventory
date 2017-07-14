@@ -23,7 +23,7 @@ import java.util.Scanner;
 public class App {
 
     /**
-     * used to register items by getting item inputs via console and save them an the database
+     * used to register items by getting item inputs via console and save them in the database
      */
     private void registerItems() {     //Encapsulation
 
@@ -50,7 +50,7 @@ public class App {
 
 
     /**
-     * used to register employees by getting employee inputs via console and save them an the database
+     * used to register employees by getting employee inputs via console and save them in the database
      */
     private void registerEmployees() {     //Encapsulation
 
@@ -87,7 +87,7 @@ public class App {
         String itemNumber = s.nextLine();
 
         ItemDaoImpl itemDaoImpl = new ItemDaoImpl();
-        itemDaoImpl.assignItem(employeeNumber,itemNumber);
+        itemDaoImpl.assignItem(employeeNumber, itemNumber);
 
     }
 
@@ -129,10 +129,10 @@ public class App {
     /**
      * display the main menu and get the user's choice and then navigate according to user's choice
      */
-    private void showChoices(){
+    private void showChoices() {
 
         Scanner s = new Scanner(System.in); //inheritance    //polymorphism
-        App ts1 = new App();
+        App ts1 = new App();                //inheritance
 
         String mainMenu = ("Select a choice: \n"
                 + "1. Enter 1 to register items :\n"
@@ -173,7 +173,7 @@ public class App {
 
         } while (choice != 0);
 
-        }
+    }
 
     public static void main(String[] args) {
 

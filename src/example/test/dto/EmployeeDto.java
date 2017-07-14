@@ -15,52 +15,58 @@ public class EmployeeDto {
 
     /**
      * set the value for employeeNumber
+     *
      * @param empNo
      */
-    public void setEmployeeNumber(String empNo){
+    public void setEmployeeNumber(String empNo) {
 
-        this.employeeNumber=empNo;
+        this.employeeNumber = empNo;
     }
 
     /**
-     *set the value for employeeName
+     * set the value for employeeName
+     *
      * @param empName
      */
-    public void setEmployeeName(String empName){
+    public void setEmployeeName(String empName) {
 
-        this.employeeName=empName;
+        this.employeeName = empName;
     }
 
     /**
-     *set the value for employeePosition
+     * set the value for employeePosition
+     *
      * @param empPositiom
      */
-    public void setEmployeePosition(String empPositiom){
+    public void setEmployeePosition(String empPositiom) {
 
-        this.employeePosition=empPositiom;
+        this.employeePosition = empPositiom;
     }
 
     /**
      * return the value of employeeNumber
+     *
      * @return employeeNumber value
      */
-    public String getEmployeeNumber(){
+    public String getEmployeeNumber() {
         return this.employeeNumber;
     }
 
     /**
-     *return the value of employeeName
+     * return the value of employeeName
+     *
      * @return employeeName value
      */
-    public String getEmployeeName(){
+    public String getEmployeeName() {
         return this.employeeName;
     }
 
     /**
-     *return the value of employeePosition
+     * return the value of employeePosition
+     *
      * @return employeePosition value
      */
-    public String getEmployeePosition(){
+    public String getEmployeePosition() {
         return this.employeePosition;
     }
 

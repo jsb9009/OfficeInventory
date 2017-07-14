@@ -15,6 +15,7 @@ public class ItemDto {
 
     /**
      * set the value for itemNumber
+     *
      * @param itemNo
      */
     public void setItemNumber(String itemNo) {
@@ -24,6 +25,7 @@ public class ItemDto {
 
     /**
      * set the value for itemName
+     *
      * @param itemName
      */
     public void setItemName(String itemName) {
@@ -33,6 +35,7 @@ public class ItemDto {
 
     /**
      * set the value for itemType
+     *
      * @param itemType
      */
     public void setItemType(String itemType) {
@@ -42,6 +45,7 @@ public class ItemDto {
 
     /**
      * .return the value of itemNumber
+     *
      * @return itemNumber
      */
     public String getItemNumber() {
@@ -49,7 +53,8 @@ public class ItemDto {
     }
 
     /**
-     *return the value of itemName
+     * return the value of itemName
+     *
      * @return itemName
      */
     public String getItemName() {
@@ -58,7 +63,8 @@ public class ItemDto {
     }
 
     /**
-     *return the value of itemType
+     * return the value of itemType
+     *
      * @return itemType
      */
     public String getItemType() {
